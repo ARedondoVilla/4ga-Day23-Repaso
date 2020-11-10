@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
+import { array } from "prop-types";
 
 export const Contacts = () => {
+    const myArray = [{name: "Alejandro"}, {name: "Marta"}];
 	const [state, setState] = useState({
 		showModal: false
 	});
@@ -19,10 +21,20 @@ export const Contacts = () => {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
+                        {myArray.map((item, index) => {
+                            console.log("Mi valor es: ", item);
+                            console.log("Mi indice es: ", index);
+                            return (
+                                <li key={index}>
+                                    <span>{item.name}</span>
+
+                                </li>
+                            )
+                            
+                        })}
+
 						<ContactCard onDelete={() => setState({ showModal: true })} />
-						<ContactCard />
-						<ContactCard />
-						<ContactCard />
+					
 					</ul>
 				</div>
 			</div>
